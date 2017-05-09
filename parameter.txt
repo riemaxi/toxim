@@ -1,0 +1,5 @@
+db.master: data/master.db
+
+compound.db: data/compound.db
+compound.import: import/cid.txt
+compound.structure: data/structure
