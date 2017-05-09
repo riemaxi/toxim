@@ -1,5 +1,12 @@
-db.master: data/master.db
+protein.db: data/protein.db
+protein.import: import/pid.txt
+protein.structure: data/protein/structure
 
 compound.db: data/compound.db
 compound.import: import/cid.txt
-compound.structure: data/structure
+
+compound.fetch.structure: data/compound/structure
+compound.fetch.format: sdf
+
+compound.optimize.structure: data/compound/structure/optimized
+compound.optimize.format: sdf
