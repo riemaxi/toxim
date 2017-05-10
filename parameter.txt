@@ -9,4 +9,4 @@ compound.fetch.structure: data/compound/structure
 compound.fetch.format: sdf
 
 compound.optimize.structure: data/compound/structure/optimized
-compound.optimize.format: sdf
+compound.optimize.format: pdb
