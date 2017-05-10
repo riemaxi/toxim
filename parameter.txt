@@ -10,3 +10,12 @@ compound.fetch.format: sdf
 
 compound.optimize.structure: data/compound/structure/optimized
 compound.optimize.format: pdb
+
+protein.db: data/protein.db
+protein.import: import/pid.txt
+
+protein.fetch.format: xml
+protein.fetch.columns: structureId,structureTitle,structureAuthor
+
+tool.packer.payload: 5
+tool.packer.del:,
