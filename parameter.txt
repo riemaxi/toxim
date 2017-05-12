@@ -23,5 +23,7 @@ process.prepare.protein_outdir: data/docking/protein
 process.prepare.compound_indir: data/compound/structure
 process.prepare.compound_outdir: data/docking/compound
 
+matrix.db: data/matrix.db
+
 tool.packer.payload: 5
 tool.packer.del:,
