@@ -1,5 +1,7 @@
 *.db
 *.pdb
+*.pdbqt
+*.gpf
 *.sdf
 *.pyc
 waste.*
