@@ -19,8 +19,5 @@ for id in sys.stdin:
 	out_file = '{}/{}/molecule.pdbqt'.format(out_dir,id)
 	os.system('mkdir {}'.format(out_mol_dir))
 
-	#os.system(command.format(in_file, out_file))
-	#print(id)
-
-	print(command.format(in_file, out_file))
-	
+	os.system(command.format(in_file, out_file))
+	print(id)
