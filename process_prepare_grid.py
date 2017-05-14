@@ -18,7 +18,7 @@ compound_in_dir = p._('process.prepare.compound_outdir')
 out_dir = p._('process.prepare.grid_outdir')
 
 
-command = 'prepare_gpf4.py -l {} -r {} -y -o {}'
+command = 'prepare_gpf4.py -l {0} -r {1}/protein.pdbqt -y -o {1}/protein.gpf'
 for id in sys.stdin:
 	id = id.strip('\n').upper()
 
@@ -28,13 +28,11 @@ for id in sys.stdin:
 		pid = pid.upper()
 		protein_in_file = '{}/{}/molecule.pdbqt'.format(protein_in_dir,pid)
 		out_mol_dir = '{}/{}_{}'.format(out_dir,id, pid)
-		out_file = '{}/molecule.gpf'.format(out_mol_dir)
 
 		os.system('rm -rf {}'.format(out_mol_dir))
 		os.system('mkdir {}'.format(out_mol_dir))
+		os.system('cp {} {}/protein.pdbqt'.format(protein_in_file,out_mol_dir))
 
-		os.system(command.format(compound_in_file, protein_in_file, out_file))
+		os.system(command.format(compound_in_file, out_mol_dir))
 		print('{}\t{}'.format(id,pid))
-
-		#print(command.format(compound_in_file, protein_in_file, out_file))
 	
