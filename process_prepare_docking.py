@@ -8,6 +8,30 @@ def loadProteins(filename):
 
         return data.strip('\n').split('\n')
 
+def adapt_parameter_file(filename):
+	params = [
+		'autodock_parameter_version',
+		'outlev',	
+		'intelec',
+		'ligand_types',
+		'fld',
+		'map',
+		'elecmap',
+		'desolvmap',
+		'move',
+		'about']
+
+	adapted = ''
+	for line in open(filename):
+		param = line.split(' ')
+		if param[0] in params:
+			adapted += line
+
+	adapted += 'epdb'
+	with open(filename,'w') as file:
+		file.write(adapted)
+		
+
 p = Parameter()
 
 proteins = loadProteins(p._('protein.import'))
@@ -30,5 +54,7 @@ for id in sys.stdin:
 
 		os.chdir(out_mol_dir)
 		os.system(command)
+
+		adapt_parameter_file('ligand_protein.dpf')
 		print('{}\t{}'.format(id,pid))
 	

@@ -8,5 +8,6 @@
 *.fld
 *.xyz
 *.dpf
+*.log
 waste.*
 volatile.*
