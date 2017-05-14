@@ -26,6 +26,8 @@ process.prepare.compound_outdir: data/docking/compound
 process.prepare.grid_outdir: data/docking
 process.prepare.docking_outdir: data/docking
 
+process.fill_matrix_outdir: data/docking
+
 matrix.db: data/matrix.db
 
 tool.packer.payload: 5
