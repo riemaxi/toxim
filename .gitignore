@@ -4,5 +4,9 @@
 *.gpf
 *.sdf
 *.pyc
+*.map
+*.fld
+*.xyz
+*.dpf
 waste.*
 volatile.*
