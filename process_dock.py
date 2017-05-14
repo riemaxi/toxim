@@ -16,6 +16,7 @@ compound_in_dir = p._('process.prepare.compound_outdir')
 
 out_dir = p._('process.prepare.docking_outdir')
 
+root = os.getcwd()
 command = 'autodock4 -p ligand_protein.dpf -l scoring.log'
 for id in sys.stdin:
 	id = id.strip('\n').upper()
@@ -26,6 +27,7 @@ for id in sys.stdin:
 
 		os.chdir(out_mol_dir)
 		os.system(command)
+		os.chdir(root)
 
 		print('{}\t{}'.format(id,pid))
 

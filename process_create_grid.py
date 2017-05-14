@@ -13,6 +13,7 @@ p = Parameter()
 proteins = loadProteins(p._('protein.import'))
 
 out_dir = p._('process.prepare.grid_outdir')
+root = os.getcwd()
 
 command = 'autogrid4 -p protein.gpf'
 for id in sys.stdin:
@@ -25,6 +26,8 @@ for id in sys.stdin:
 
 		os.chdir(out_mol_dir)
 		os.system(command)
+		os.chdir(root)
+
 		print('{}\t{}'.format(id,pid))
 
 		#print(command.format(param_file))

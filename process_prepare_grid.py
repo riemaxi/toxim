@@ -17,7 +17,6 @@ compound_in_dir = p._('process.prepare.compound_outdir')
 
 out_dir = p._('process.prepare.grid_outdir')
 
-
 command = 'prepare_gpf4.py -l {0} -r {1}/protein.pdbqt -y -o {1}/protein.gpf'
 for id in sys.stdin:
 	id = id.strip('\n').upper()
