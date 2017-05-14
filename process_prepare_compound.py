@@ -9,7 +9,7 @@ out_dir = p._('process.prepare.compound_outdir')
 
 os.system('rm -rf {}/*'.format(out_dir))
 
-command = 'pythonsh volatile.prepare_compound.py -l {} -o {}'
+command = 'prepare_ligand4.py -l {} -o {}'
 for id in sys.stdin:
 	id = id.strip('\n')
 

@@ -7,9 +7,7 @@ p = Parameter()
 in_dir = p._('process.prepare.protein_indir')
 out_dir = p._('process.prepare.protein_outdir')
 
-os.system('rm -rf {}/*'.format(out_dir))
-
-command = 'obabel -ipdb {} -opdbqt > {}'
+command = 'obabel -ipdb {} -opdbqt -xr > {}'
 for id in sys.stdin:
 	id = id.strip('\n')
 
@@ -17,6 +15,8 @@ for id in sys.stdin:
 
 	out_mol_dir = '{}/{}'.format(out_dir,id)
 	out_file = '{}/{}/molecule.pdbqt'.format(out_dir,id)
+
+	os.system('rm -rf {}'.format(out_mol_dir))
 	os.system('mkdir {}'.format(out_mol_dir))
 
 	os.system(command.format(in_file, out_file))
