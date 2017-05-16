@@ -13,16 +13,17 @@ p = Parameter()
 proteins = loadProteins(p._('protein.import'))
 
 dir = p._('process.fill_matrix_outdir')
-
 for id in sys.stdin:
 	id = id.strip('\n').upper()
-	
 	for pid in proteins:
 		pid = pid.upper()
 		score_file = '{}/{}_{}/scoring.log'.format(dir,id, pid)
 
 		with open(score_file) as file:
-			print(file.read())
+			data = file.read().split('\n')
 
-		print('{}\t{}'.format(id,pid))
+		score_line = [s for s in data if 'Estimated Free Energy of Binding' in s]
+		score =  score_line[0].split('=',1)[1].split()[0]
+
+		print('{}\t{}\t{}'.format(id,pid, score))
 
