@@ -17,6 +17,8 @@ protein.import: import/pid.txt
 protein.fetch.format: xml
 protein.fetch.columns: structureId,structureTitle,structureAuthor
 
+process.fetch_protein_structure.store_dir: data/protein/structure
+
 process.prepare.protein_indir: data/protein/structure
 process.prepare.protein_outdir: data/docking/protein
 
