@@ -1,0 +1,20 @@
+-20966---------
+must specify ROOT before writing
+Traceback (most recent call last):
+  File "/home/apps/MGLTools/1.5.6/MGLTools-1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py", line 227, in <module>
+    if mol.returnCode!=0: 
+AttributeError: Protein instance has no attribute 'returnCode'
+
+----24261-----------
+setting PYTHONHOME environment
+Sorry, there are no Gasteiger parameters available for atom 24261_3d: :UNL1:SI
+
+
+-----47592------------
+setting PYTHONHOME environment
+must specify ROOT before writing
+Traceback (most recent call last):
+  File "/home/apps/MGLTools/1.5.6/MGLTools-1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py", line 227, in <module>
+    if mol.returnCode!=0: 
+AttributeError: Protein instance has no attribute 'returnCode'
+

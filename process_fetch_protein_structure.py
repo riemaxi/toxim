@@ -9,7 +9,7 @@ def fetch(pid, dir):
 		with Ureq.urlopen(req) as response:
 			data = response.read().decode('utf8')
 
-		open('{}/{}.pdb'.format(dir,pid),'w').write(data)
+		open('{}/{}.pdb'.format(dir,pid.lower()),'w').write(data)
 		return 1
 	except:
 		return 0

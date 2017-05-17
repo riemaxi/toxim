@@ -14,7 +14,7 @@ for id in sys.stdin:
 
 	in_file = '{}/{}_3d.pdb'.format(in_dir,id.lower())
 	if not os.path.isfile(in_file):
-		continue
+		in_file = '{}/optimized/{}_3d.pdb'.format(in_dir,id.lower())
 
 	out_mol_dir = '{}/{}'.format(out_dir,id)
 	out_file = '{}/{}/molecule.pdbqt'.format(out_dir,id)
