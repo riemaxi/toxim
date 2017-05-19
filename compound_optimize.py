@@ -3,7 +3,7 @@ import os
 from parameter import Parameter
 
 def optimize(path, dest, format):
-	command = 'obminimize -ff GAFF -sd -c 1e-5 -o {0} {1} > {2}'.format(format, path, dest)
+	command = 'obminimize -ff {3} -sd -c 1e-5 -o {0} {1} > {2}'.format(format, path, dest, ff)
 	os.system(command)
 
 p = Parameter()

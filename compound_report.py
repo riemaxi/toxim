@@ -5,6 +5,6 @@ p = Parameter()
 
 structure = p._('compound.fetch.structure')
 c = Compound(p._('compound.db'))
-c.listAll( lambda data: print('{},{},{}/{}.{}'.format(data[0], data[1], structure, data[0],'sdf') ) )
+c.listAll( lambda data: print('{},{},{}/{}.{}'.format(data[1], data[0], structure, data[1],'sdf') ) )
 c.close()
 

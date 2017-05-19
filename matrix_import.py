@@ -15,14 +15,14 @@ proteins = loadProteins(p._('protein.import'))
 matrix = Matrix(p._('matrix.db'))
 matrix.clear()
 
-id = 0
+count = 1
 for cid in sys.stdin:
 	cid = cid.strip('\n')
 	for pid in proteins:
-		matrix.addScore(id,cid,pid)
+		matrix.addScore(cid,pid)
 
-	print(cid)
-	id += 1
+	print(count,cid)
+	count+=1
 
 matrix.commit()
 matrix.close()

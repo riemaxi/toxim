@@ -35,5 +35,5 @@ for cid in sys.stdin:
 		cdata = fetch(command.format(cid,2, format))
 		filename = save(dir, cid,'2d', format, cdata)
 
-	print('COMPOUND_FETCH\t{}\t{}\t{}'.format(count + 1, cid,filename))
+	print('{}\t{}\t{}'.format(count + 1, cid,filename))
 	count += 1

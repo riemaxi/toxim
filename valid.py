@@ -47,6 +47,12 @@ class Domain:
 			return False
 
 
+	def idExists(self, id):
+		c = self.sess.cursor()
+		c.execute('select id from assignment where id = {}'.format(id))
+		result = c.fetchone()
+		return result != None
+
 	def addEntity(self, id, fields, commit = False):
 		exists = self.exists(fields)
 		if not exists:

@@ -4,7 +4,7 @@ from parameter import Parameter
 
 p = Parameter()
 
-in_dir = p._('process.prepare.compound_indir')
+in_dir = p._('process.prepare.optimized_compound_indir')
 out_dir = p._('process.prepare.compound_outdir')
 
 command = 'prepare_ligand4.py -l {} -o {}'
@@ -14,7 +14,7 @@ for id in sys.stdin:
 
 	in_file = '{}/{}_3d.pdb'.format(in_dir,id.lower())
 	if not os.path.isfile(in_file):
-		in_file = '{}/optimized/{}_3d.pdb'.format(in_dir,id.lower())
+		continue
 
 	out_mol_dir = '{}/{}'.format(out_dir,id)
 	out_file = '{}/{}/molecule.pdbqt'.format(out_dir,id)

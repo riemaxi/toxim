@@ -25,6 +25,8 @@ process.prepare.protein_outdir: data/docking/protein
 process.prepare.compound_indir: data/compound/structure
 process.prepare.compound_outdir: data/docking/compound
 
+process.prepare.optimized_compound_indir: data/compound/structure/optimized
+
 process.prepare.grid_outdir: data/docking
 process.prepare.docking_outdir: data/docking
 

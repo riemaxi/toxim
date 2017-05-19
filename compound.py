@@ -15,7 +15,6 @@ class Compound(Domain):
 	SYNONYM = 8
 	ISO_SMILE = 9
 	INCHI = 10
-	CID = 11
 
 	def __init__(self,name):
 		Domain.__init__(self, name)
@@ -37,16 +36,17 @@ class Compound(Domain):
 		}
 
 	def importData(self, source, savefreq):
-		self.clear()
-
-		id = self.getMaxEntityId()
 		count = 0
 		for cid in open(source):
 			cid = cid.strip('\n')
+			if self.idExists(cid):
+				print(cid)
+				continue
+
 			drug = self.fetchDrug(cid)
 
 			if self.addEntity(
-				id,
+				cid,
 				{ (self.NAME, drug['name']),
 				(self.FORMULA, drug['formula']),
 				(self.WEIGHT, drug['weight']),
@@ -57,10 +57,8 @@ class Compound(Domain):
 				(self.HEAVY_ATOM_N, drug['heavy_atom']),
 				(self.SYNONYM, drug['synonym']),
 				(self.ISO_SMILE,drug['iso_smile']),
-				(self.INCHI, drug['inchi']),
-				(self.CID, cid) }
+				(self.INCHI, drug['inchi'])}
 				):
-				id += 1
 
 				print(cid)
 
@@ -75,6 +73,6 @@ class Compound(Domain):
 	def listAll(self, sink):
 		Domain.foreach(
 			self, 
-			lambda data: sink( (data[4][1],data[2][1],data[3][1]) ),
-			'e.dimension in (0,1,3,11)'
+			lambda data: sink( (data[-1][1],data[0][1],data[1][1]) ),
+			'e.dimension in (1,3)'
 			)
