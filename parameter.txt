@@ -8,17 +8,25 @@ compound.freqsave: 20
 
 compound_clone.import: import/clone.txt
 
+compound_report.sep: tab
+
 compound.fetch.structure: data/compound/structure
 compound.fetch.format: sdf
 
+compound.fetch_2d.structure: data/compound/2d_structure
+
 compound.optimize.structure: data/compound/structure/optimized
 compound.optimize.format: pdb
+
+compound_filter.excluded: 21455,22053,24261,24985,47353,47592,20966
 
 protein.db: data/protein.db
 protein.import: import/pid.txt
 
 protein.fetch.format: xml
 protein.fetch.columns: structureId,structureTitle,structureAuthor
+
+process.prepare_matrix.excluded: 21455,22053,24261,24985,47353,47592,20966
 
 process.fetch_protein_structure.store_dir: data/protein/structure
 

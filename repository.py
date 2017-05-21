@@ -19,7 +19,7 @@ class Repository:
 
 	def add(self, data):
 		id = self.value.get(data)
-		if not id:
+		if id == None:
 			self.value[data] = self.availableId
 			id = self.availableId
 		self.update()

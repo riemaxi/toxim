@@ -53,7 +53,7 @@ class Domain:
 		result = c.fetchone()
 		return result != None
 
-	def addEntity(self, id, fields, commit = False):
+	def addEntity(self, id, fields = [], commit = False):
 		exists = self.exists(fields)
 		if not exists:
 			for field in fields:
@@ -98,30 +98,37 @@ class Domain:
 		for value in result:
 			sink(value)
 
-	def foreach(self, sink, criteria = '1=1', locationIdx = -1):
+	def foreach(self, sink, criteria = '1=1', idIdx = -1):
 		c = self.sess.cursor()
-		result = c.execute('select e.id, e.dimension, v.data from assignment e join value v on e.value = v.id where e.domain = {0} and {1} order by e.id, e.dimension, e.value'.format(self.domain, criteria))
+		query = 'select e.id, e.dimension, v.data from assignment e join value v on e.value = v.id where e.domain = {0} and {1} order by e.id, e.dimension, e.value'.format(self.domain, criteria)
+		result = c.execute(query)
 
-		location = -1
+		id = -1
 		entity = {}
 		for record in result:
 			entity[record[1]] = record[2]
 
-			if location>=0 and location != record[0]:
-				entity[locationIdx] = location
+			if id != -1 and id != record[0]:
+				entity[idIdx] = id
 
 				keys = sorted([x[0] for x in entity.items()])
 				if sink([(k , entity[k]) for k in keys]):
 					return
-			
-			location = record[0]
+	
+			id = record[0]
 		
 		
 		#last one
-		if len(entity):
-			entity[locationIdx] = location
+		entity[idIdx] = id
 	
-			keys = sorted([x[0] for x in entity.items()])
-			sink([(k , entity[k]) for k in keys])
+		keys = sorted([x[0] for x in entity.items()])
+		sink([(k , entity[k]) for k in keys])
 
 
+	def xforeach(self, query, sink):
+		c = self.sess.cursor()
+		result = c.execute(query)
+		
+		for record in result:
+			if sink(record):
+				exit

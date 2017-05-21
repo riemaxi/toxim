@@ -12,7 +12,7 @@ for id in sys.stdin:
 	id = id.strip('\n')
 	print(id,'b')
 
-	in_file = '{}/{}_3d.pdb'.format(in_dir,id.lower())
+	in_file = '{}/{}.pdb'.format(in_dir,id.lower())
 	if not os.path.isfile(in_file):
 		continue
 
@@ -23,8 +23,8 @@ for id in sys.stdin:
 	os.system('mkdir {}'.format(out_mol_dir))
 	
 	try:
-		os.system(command.format(in_file, out_file))
-		print(id,'e')
+		result = os.system(command.format(in_file, out_file))
+		print(id,'e',result)
 	except OSError as error:
 		print(id,'e', error)
 
