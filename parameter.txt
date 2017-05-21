@@ -4,6 +4,9 @@ protein.structure: data/protein/structure
 
 compound.db: data/compound.db
 compound.import: import/cid.txt
+compound.freqsave: 20
+
+compound_clone.import: import/clone.txt
 
 compound.fetch.structure: data/compound/structure
 compound.fetch.format: sdf
