@@ -1,1 +1,1 @@
-cat import/cid.txt | python process_prepare_docking.py
+python matrix_candidate.py | python process_prepare_docking.py

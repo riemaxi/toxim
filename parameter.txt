@@ -17,6 +17,7 @@ compound.fetch_2d.structure: data/compound/2d_structure
 
 compound.optimize.structure: data/compound/structure/optimized
 compound.optimize.format: pdb
+compounf.optimize.force_field: UFF
 
 compound_filter.excluded: 21455,22053,24261,24985,47353,47592,20966
 
