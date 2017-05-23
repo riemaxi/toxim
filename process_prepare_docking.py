@@ -29,7 +29,7 @@ def adapt_parameter_file(filename):
 
 	adapted += 'epdb'
 	with open(filename,'w') as file:
-		file.write(adapted)
+		file.write(adapted + '\n')
 		
 
 p = Parameter()

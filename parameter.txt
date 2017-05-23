@@ -42,6 +42,8 @@ process.prepare.optimized_compound_indir: data/compound/structure/optimized
 process.prepare.grid_outdir: data/docking
 process.prepare.docking_outdir: data/docking
 
+process.dock.search_params: template/docking_param.txt
+
 process.fill_matrix_outdir: data/docking
 
 matrix.db: data/matrix.db
