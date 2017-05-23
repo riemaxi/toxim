@@ -1,1 +1,1 @@
-cat import/cid.txt | python process_fill_matrix.py
+cat waste.cid.txt | python process_fill_matrix.py

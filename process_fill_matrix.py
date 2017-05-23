@@ -20,7 +20,7 @@ for id in sys.stdin:
 		score_file = '{}/{}_{}/scoring.log'.format(dir,id, pid)
 
 		with open(score_file) as file:
-			data = file.read().split('\n')
+			data = file.read().split('\n')[::-1]
 
 		score_line = [s for s in data if 'Estimated Free Energy of Binding' in s]
 		score =  score_line[0].split('=',1)[1].split()[0]
