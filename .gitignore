@@ -9,5 +9,6 @@
 *.xyz
 *.dpf
 *.log
+*.out
 waste.*
 volatile.*

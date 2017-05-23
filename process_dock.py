@@ -10,8 +10,9 @@ def loadProteins(filename):
 
 def prepare_parameters(tcontent):
 	pcontent = open('ligand_protein.dpf').read()
-	with open('ligand_protein.dpf','w') as file:
-		file.write('{}\n{}'.format(pcontent, tcontent))
+	if not '#ADDED BY TOXIM' in pcontent:
+		with open('ligand_protein.dpf','w') as file:
+			file.write('{}\n{}'.format(pcontent, tcontent))
 
 
 p = Parameter()
