@@ -1,10 +1,12 @@
 class Repository:
+	FIRST_ID = 0
+
 	value = {}
-	availableId = 0
+	availableId = FIRST_ID
 
 	def update(self):
 		values = sorted(self.value.values())
-		id = -1
+		id = self.FIRST_ID - 1
 		for v in values:
 			if v - id > 1:
 				id = min(v,id)
@@ -28,7 +30,7 @@ class Repository:
 
 	def clear(self):
 		self.value = {}
-		self.availableId = 0
+		self.availableId = self.FIRST_ID
 
 	def foreach(self, sink):
 		for data,id in self.value.items():

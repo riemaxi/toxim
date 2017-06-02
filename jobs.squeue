@@ -1,0 +1,6 @@
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+            104124   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
+            104125   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
+            104126   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
+            104127   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
+            104118   CLUSTER prepare_   ferrer  R       0:02      1 compute-0-13

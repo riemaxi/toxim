@@ -9,7 +9,7 @@ class Domain:
 		c = self.sess.cursor()
 
 		c.execute('create table if not exists assignment(domain int, id int,dimension int, value int, primary key(domain,id,dimension))')
-		c.execute('create table if not exists value(domain int, id int, data text, primary key(id))')
+		c.execute('create table if not exists value(domain int, id int, data text, primary key(domain,id))')
 
 		self.sess.commit()
 
@@ -24,10 +24,11 @@ class Domain:
 	def mapValue(self, data):
 		return self.repo.add(data)
 
-	def addValue(self, location, dimension, data, default = '', commit = False):
+	def addValue(self, location, dimension, data, default = '', on_duplicate='replace', commit = False):
 		c = self.sess.cursor()
 		id = self.mapValue(default if data == None else data)
-		c.execute('insert or ignore into assignment values(?,?,?,?)',(self.domain,location,dimension, id))
+		query = 'insert or {} into assignment values({},{},{},{})'.format(on_duplicate, self.domain,location,dimension, id)
+		c.execute(query)
 		if commit:
 			self.sess.commit()
 
@@ -53,13 +54,19 @@ class Domain:
 		result = c.fetchone()
 		return result != None
 
-	def addEntity(self, id, fields = [], commit = False):
+
+	def addEntity(self, id, fields = [], on_duplicate='replace', commit = False):
 		exists = self.exists(fields)
 		if not exists:
 			for field in fields:
-				self.addValue(id,field[0],field[1],commit)
+				self.addValue(id,field[0],field[1],'', on_duplicate,commit)
 
 		return not exists
+
+
+	def pushEntity(self, id, fields = [],on_duplicate='replace', commit = False):
+		for field in fields:
+			self.addValue(id,field[0],field[1],'', on_duplicate, commit)
 
 
 	def getMaxEntityId(self):

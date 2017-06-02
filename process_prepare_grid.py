@@ -1,37 +1,54 @@
+import time
 import os
 import sys
 from parameter import Parameter
 
-def loadProteins(filename):
-        with open(filename) as file:
-                data = file.read()
+def prepare_job(template, filename, pdbqtpath, dir):
+	tcontent = open(template).read().format(pdbqtpath)
+	with open('{}/{}'.format(dir, filename),'w') as file:
+		file.write(tcontent)
 
-        return data.strip('\n').split('\n')
+def holdon(user):
+	locked = True
+	print('hold ...')
+	while locked:
+		os.system('squeue -u {} > jobs.squeue'.format(user))
+		jobs = open('jobs.squeue').read().strip('\n').split('\n')
+		print('# jobs: ', len(jobs) - 1)
+		locked = len(jobs)>1
+
+		time.sleep(1)
 
 p = Parameter()
-
-proteins = loadProteins(p._('protein.import'))
 
 protein_in_dir = p._('process.prepare.protein_outdir')
 compound_in_dir = p._('process.prepare.compound_outdir')
 
 out_dir = p._('process.prepare.grid_outdir')
 
-command = 'prepare_gpf4.py -l {0} -r {1}/protein.pdbqt -y -o {1}/protein.gpf'
-for id in sys.stdin:
-	id = id.strip('\n').upper()
+root = os.getcwd()
+user = p._('user')
+command = 'sbatch prepare_grid_job.sh'
+count = 1
+payload = p.i('process.prepare.grid_payload')
+for pair in sys.stdin:
+	if count % payload == 0:
+		holdon(user)
 
-	compound_in_file = '{}/{}/molecule.pdbqt'.format(compound_in_dir,id)
+	id, pid = pair.strip('\n').upper().split('\t')
+
+	protein_in_file = os.path.abspath( '{}/{}/molecule.pdbqt'.format(protein_in_dir,pid) )
+	out_mol_dir = '{}/{}_{}'.format(out_dir,id, pid)
+
+	os.system('rm -rf {}'.format(out_mol_dir))
+	os.system('mkdir {}'.format(out_mol_dir))
+	os.system('cp {} {}/protein.pdbqt'.format(protein_in_file,out_mol_dir))
+	prepare_job('template/prepare_grid_job.sh','prepare_grid_job.sh', protein_in_file, out_mol_dir)
 	
-	for pid in proteins:
-		pid = pid.upper()
-		protein_in_file = '{}/{}/molecule.pdbqt'.format(protein_in_dir,pid)
-		out_mol_dir = '{}/{}_{}'.format(out_dir,id, pid)
+	os.chdir(out_mol_dir)
+	os.system(command)
+	os.chdir(root)
 
-		os.system('rm -rf {}'.format(out_mol_dir))
-		os.system('mkdir {}'.format(out_mol_dir))
-		os.system('cp {} {}/protein.pdbqt'.format(protein_in_file,out_mol_dir))
+	print('{}\t{}\t{}'.format(count,id,pid))
 
-		os.system(command.format(compound_in_file, out_mol_dir))
-		print('{}\t{}'.format(id,pid))
-	
+	count += 1

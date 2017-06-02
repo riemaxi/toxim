@@ -1,1 +1,1 @@
-python matrix_candidate.py | python process_prepare_grid.py
+sh pair_report.sh | python process_prepare_grid.py

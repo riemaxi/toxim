@@ -1,28 +1,15 @@
-from matrix import Matrix
-from parameter import Parameter
 import sys
-
-def loadProteins(filename):
-	with open(filename) as file:
-		data = file.read()
-
-	return data.strip('\n').split('\n')
+from parameter import Parameter
+from matrix import Matrix
 
 p = Parameter()
+m = Matrix(p._('matrix.db'))
+m.clear()
 
-proteins = loadProteins(p._('protein.import'))
+for pair in sys.stdin:
+	cid, pid, dim = pair.strip('\n').split('\t')
+	m.addScore(cid, dim , '{}:{}'.format(pid,0))
+	print(cid, dim, pid)
+m.commit()
 
-matrix = Matrix(p._('matrix.db'))
-matrix.clear()
-
-count = 1
-for cid in sys.stdin:
-	cid = cid.strip('\n')
-	for pid in proteins:
-		matrix.addScore(cid,pid)
-
-	print(count,cid)
-	count+=1
-
-matrix.commit()
-matrix.close()
+m.close()

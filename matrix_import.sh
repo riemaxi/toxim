@@ -1,1 +1,1 @@
-cat import/cid.txt | python matrix_import.py
+sh pair_report.sh | python matrix_import.py

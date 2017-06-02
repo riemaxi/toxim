@@ -4,10 +4,12 @@ import sys
 
 def listAll(p,m):
 	m.foreach(
-		lambda d: print(d)
+		lambda d: print(d),
+		p._('matrix_bench.listall.criteria'
 	)
 
 def lookup(p,m):
+	p._('matrix_bench.lookup.criteria'
 	print('look up')
 
 p = Parameter()
