@@ -1,34 +1,35 @@
 import os
 import sys
 from parameter import Parameter
+from process.holder import ProcessHolder
 
-def loadProteins(filename):
-        with open(filename) as file:
-                data = file.read()
-
-        return data.strip('\n').split('\n')
+JOB_NAME = 'create_grid_job.sh'
 
 p = Parameter()
-
-proteins = loadProteins(p._('protein.import'))
+holder = ProcessHolder(p._('user'),JOB_NANE, 'template/' + JOB_NAME)
 
 out_dir = p._('process.prepare.grid_outdir')
 root = os.getcwd()
 
-command = 'autogrid4 -p protein.gpf'
-for id in sys.stdin:
-	id = id.strip('\n').upper()
+template = open('template/' + JOB_NAME).read()
 
-	for pid in proteins:
-		pid = pid.upper()
+command = 'sbatch ' + JOB_NAME
+count = 1
+payload = p.i('process.sbatch.payload')
+for pair in sys.stdin:
+	if count % payload == 0:
+		holder.hold()
+		
+	id, dim, pid, state = pair.strip('\n').upper().split('\t')
 
-		out_mol_dir = '{}/{}_{}'.format(out_dir,id, pid)
+	out_mol_dir = '{}/{}_{}'.format(out_dir,id, pid)
+	holder.prepare(template)
 
-		os.chdir(out_mol_dir)
-		os.system(command)
-		os.chdir(root)
+	os.chdir(out_mol_dir)
+	os.system(command)
+	os.chdir(root)
 
-		print('{}\t{}'.format(id,pid))
+	print('{}\t{}\t{}'.format(count,id,pid))
 
-		#print(command.format(param_file))
+	count += 1
 	

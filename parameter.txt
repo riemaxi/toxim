@@ -50,6 +50,8 @@ process.dock.search_params: template/docking_param.txt
 
 process.fill_matrix_outdir: data/docking
 
+process.sbatch.payload: 64
+
 matrix.db: data/matrix.db
 
 progress.db: data/progress.db
