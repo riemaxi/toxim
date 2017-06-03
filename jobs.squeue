@@ -1,6 +1,12 @@
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-            104124   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
-            104125   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
-            104126   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
-            104127   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
-            104118   CLUSTER prepare_   ferrer  R       0:02      1 compute-0-13
+            104819   CLUSTER prepare_   ferrer PD       0:00      1 (AssocMaxJobsLimit)
+            104820   CLUSTER prepare_   ferrer PD       0:00      1 (AssocMaxJobsLimit)
+            104821   CLUSTER prepare_   ferrer PD       0:00      1 (AssocMaxJobsLimit)
+            104822   CLUSTER prepare_   ferrer PD       0:00      1 (AssocMaxJobsLimit)
+            104823   CLUSTER prepare_   ferrer PD       0:00      1 (AssocMaxJobsLimit)
+            104817   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
+            104818   CLUSTER prepare_   ferrer  R       0:01      1 compute-0-13
+            104813   CLUSTER prepare_   ferrer  R       0:02      1 compute-0-13
+            104814   CLUSTER prepare_   ferrer  R       0:02      1 compute-0-13
+            104816   CLUSTER prepare_   ferrer  R       0:02      1 compute-0-13
+            104788   CLUSTER prepare_   ferrer  R       0:11      1 compute-0-13

@@ -1,9 +1,17 @@
-#!/bin/bash -l
+#fetch compound data
+sh compound_clone.sh
 
-# dependencies
-SCRIPTPATH="/home/ferrer/toxim"
+#import compounds
+sh compound_import.sh
 
-#SBATCH --output $SCRIPTPATH/cluster/"$UID".out
+#prepare compounds
+sh process_prepare_compound.sh
 
-# run
-sh $SCRIPTPATH/process_dock.sh
+#import proteins out of  sergio's 
+sh protein_import.sh
+
+#fetch structures
+sh process_fetch_protein_structure.sh
+
+#init progress list. Used to recover from downtime
+sh progress_init.sh

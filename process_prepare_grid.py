@@ -35,7 +35,7 @@ for pair in sys.stdin:
 	if count % payload == 0:
 		holdon(user)
 
-	id, pid = pair.strip('\n').upper().split('\t')
+	id, dim, pid, state = pair.strip('\n').upper().split('\t')
 
 	protein_in_file = os.path.abspath( '{}/{}/molecule.pdbqt'.format(protein_in_dir,pid) )
 	out_mol_dir = '{}/{}_{}'.format(out_dir,id, pid)

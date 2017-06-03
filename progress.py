@@ -17,5 +17,6 @@ class Progress(Domain):
 	def foreach(self, sink, criteria = ''):
 		Domain.foreach(
 			self,
-			lambda data: sink([value for id,value in data])
+			lambda data: sink(data[0][1],data[1:])
 		)
+

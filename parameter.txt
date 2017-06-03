@@ -26,7 +26,6 @@ compound_filter.excluded: 21455,22053,24261,24985,47353,47592,20966
 
 protein.db: data/protein.db
 protein.import: import/pid.txt
-protein.excluded: 21455,22053,24261,24985,47353,47592,20966
 
 protein.fetch.format: xml
 protein.fetch.columns: structureId,structureTitle,structureAuthor
@@ -43,7 +42,7 @@ process.prepare.compound_outdir: data/docking/compound
 
 process.prepare.optimized_compound_indir: data/compound/structure/optimized
 
-process.prepare.grid_payload: 10
+process.prepare.grid_payload: 64
 process.prepare.grid_outdir: data/docking
 process.prepare.docking_outdir: data/docking
 

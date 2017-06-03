@@ -1,1 +1,1 @@
-sh pair_report.sh | python process_prepare_grid.py
+python progress_report.py | python process_prepare_grid.py
