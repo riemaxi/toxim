@@ -13,8 +13,6 @@ for id in sys.stdin:
 	print(id,'b')
 
 	in_file = '{}/{}.pdb'.format(in_dir,id.lower())
-	if not os.path.isfile(in_file):
-		continue
 
 	out_mol_dir = '{}/{}'.format(out_dir,id)
 	out_file = '{}/{}/molecule.pdbqt'.format(out_dir,id)

@@ -10,5 +10,6 @@
 *.dpf
 *.log
 *.out
+*.done
 waste.*
 volatile.*

@@ -8,11 +8,11 @@ def prepare_job(template, filename, pdbqtpath, dir):
 	with open('{}/{}'.format(dir, filename),'w') as file:
 		file.write(tcontent)
 
-def holdon(user):
+def holdon(user, process_name):
 	locked = True
 	print('hold ...')
 	while locked:
-		os.system('squeue -u {} > jobs.squeue'.format(user))
+		os.system('squeue -u {} -n {} > jobs.squeue'.format(user, process_name))
 		jobs = open('jobs.squeue').read().strip('\n').split('\n')
 		print('# jobs: ', len(jobs) - 1)
 		locked = len(jobs)>1
@@ -28,12 +28,14 @@ out_dir = p._('process.prepare.grid_outdir')
 
 root = os.getcwd()
 user = p._('user')
+process_name = 'prepare_grid_job.sh'
+
 command = 'sbatch prepare_grid_job.sh'
 count = 1
 payload = p.i('process.prepare.grid_payload')
 for pair in sys.stdin:
 	if count % payload == 0:
-		holdon(user)
+		holdon(user, process_name)
 
 	id, dim, pid, state = pair.strip('\n').upper().split('\t')
 

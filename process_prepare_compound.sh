@@ -1,1 +1,1 @@
-python compound_filter.py | python process_prepare_compound.py
+sh compound_filter.sh | python process_prepare_compound.py

@@ -15,3 +15,7 @@ sh process_fetch_protein_structure.sh
 
 #init progress list. Used to recover from downtime
 sh progress_init.sh
+
+sh process_prepare_protein.sh
+
+sh process_prepare_grid.sh
