@@ -13,4 +13,4 @@
 *.done
 waste.*
 volatile.*
-prepare_grid_job.sh
+data/docking/*

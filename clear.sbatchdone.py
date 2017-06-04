@@ -10,11 +10,12 @@ for line in sys.stdin:
 	cid, pid, dim = line.strip('\n').split('\t')
 
 	dir = docking_dir + '/{}_{}'.format(cid,pid) 
-	prepare_grid_file = 'touch {}/prepare_grid.done'.format(dir)
+	create_grid_file = 'rm {}/create_grid.done'.format(dir)
 
 
-	if os.path.isfile(prepare_grid_file):
-		os.system('touch {0}'.format(prepare_grid_file))
-		print (cid,pidi, 'prepare_grid.done created')
+	if os.path.isfile(create_grid_file):
+		os.system('rm {0}'.format(create_grid_file))
+		print (cid,pid, 'create_grid.done removed')
 	else:
 		print (cid,pid)
+
