@@ -31,13 +31,13 @@ user = p._('user')
 process_name = 'prepare_grid_job.sh'
 
 command = 'sbatch prepare_grid_job.sh'
-count = 1
 payload = p.i('process.prepare.grid_payload')
 for pair in sys.stdin:
+	id, dim, pid, state, count = pair.strip('\n').upper().split('\t')
+
 	if count % payload == 0:
 		holdon(user, process_name)
 
-	id, dim, pid, state = pair.strip('\n').upper().split('\t')
 
 	protein_in_file = os.path.abspath( '{}/{}/molecule.pdbqt'.format(protein_in_dir,pid) )
 	out_mol_dir = '{}/{}_{}'.format(out_dir,id, pid)
@@ -52,5 +52,3 @@ for pair in sys.stdin:
 	os.chdir(root)
 
 	print('{}\t{}\t{}'.format(count,id,pid))
-
-	count += 1

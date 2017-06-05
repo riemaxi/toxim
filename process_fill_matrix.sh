@@ -1,1 +1,1 @@
-cat waste.cid.txt | python process_fill_matrix.py
+sh pair_report.sh | python process_fill_matrix.py
